@@ -1,0 +1,13 @@
+:root {
+  --font: Arial, Helvetica, sans-serif;
+  --primary-text-color: rgba(0, 0, 0, 1);
+  --light-text-color: rgba(255, 255, 255, 1);
+  --error-text-color: rgba(255, 0, 27, 1);
+  --primary-bg: rgba(255, 255, 255, 1);
+  --dark-bg: rgba(0, 0, 0, 1);
+  --modal-backdrop-bg: rgba(0, 0, 0, 0.8);
+
+  --transition: ease-in 200ms;
+}
+
+$desktop-break-point: 768px;
