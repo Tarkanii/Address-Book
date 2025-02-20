@@ -1,0 +1,54 @@
+.contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  overflow: hidden;
+
+  &__info {
+    font-size: 18px;
+    min-height: 70px;
+    max-width: calc(100% - 50px);
+    padding: 10px 15px;
+    
+
+    &__name {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    &__phone {
+      margin-top: 5px;
+      overflow-wrap: break-word;
+    }
+  }
+}
+
+.contact__delete-button {
+  display: flex;
+  align-items: center;
+  justify-content:center; 
+  flex-shrink: 0;
+  min-width: 50px;
+  background-color: transparent;
+  border-left: 1px solid var(--border-color);
+  transition: border-color var(--transition), background-color var(--transition);
+
+  &:hover, &:focus {
+    background-color: var(--dark-bg);
+    border-color: transparent;
+  }
+
+  &__icon {
+    height: 25px;
+    width: 25px;
+    fill: var(--primary-text-color);
+    transition: fill var(--transition);
+  }
+
+  &:hover &__icon, &:focus &__icon {
+    fill: var(--light-text-color);
+  }
+}

@@ -1,0 +1,21 @@
+@use './mixins' as *;
+@use './variables' as *;
+
+body {
+  font-family: var(--font);
+  color: var(--primary-text-color);
+  line-height: 1.2;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  padding: 0 15px;
+  
+  @include desktop {
+    max-width: $desktop-break-point;
+  }
+}

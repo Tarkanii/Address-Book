@@ -1,0 +1,14 @@
+<div class="contact">
+  <div class="contact__info">
+    <p class="contact__info__name">{{ firstName + ' ' + lastName }}</p>
+    @if (phoneNumber) {
+      <p class="contact__info__phone">{{ phoneNumber }}</p>
+    }
+  </div>
+  
+  <button class="contact__delete-button" (click)="deleteContact()">
+    <svg class="contact__delete-button__icon">
+      <use href="../../../assets/icons/sprite.svg#icon-bin"></use>
+    </svg>
+  </button>
+</div>

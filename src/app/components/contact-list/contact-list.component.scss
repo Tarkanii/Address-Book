@@ -1,0 +1,125 @@
+@use '../../../scss/mixins' as *;
+@use '../../../scss/variables' as *;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 0 150px;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.no-contacts-message {
+  color: var(--secondary-text-color);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.add-contact-button {
+  position: fixed;
+  bottom: 25px;
+  right: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px 15px;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  transition: border-color var(--transition), background-color var(--transition), color var(--transition);
+
+  &:hover, &:focus {
+    color: var(--light-text-color);
+    border-color: transparent;
+    background-color: var(--dark-bg);
+  }
+
+  @include desktop {
+    right: calc(((100% - $desktop-break-point) / 2) + 15px)
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: var(--modal-backdrop-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+
+  &.open {
+    opacity: 1;
+    visibility: visible; 
+  }
+
+  .modal {
+    transform: scale(0);
+    transition: transform var(--transition);
+  }
+
+  &.open .modal {
+    transform: scale(1);
+  }
+}
+
+.modal {
+  padding: 25px;
+  border-radius: 5px;
+  background-color: var(--primary-bg);
+
+  &__heading {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  &__message {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  &__actions__item:first-child {
+    margin-right: 10px;
+  }
+}
+
+.modal__actions__item__button {
+  padding: 10px 15px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  transition: color var(--transition), border-color var(--transition), background-color var(--transition);
+
+  &.delete {
+    color: var(--light-text-color);
+    background-color: var(--error-color);
+  }
+
+  &:hover, &:focus {
+    color: var(--secondary-text-color);
+    border-color: var(--border-color);
+  }
+
+  &.delete:hover, &.delete:focus {
+    color: var(--error-color);
+    background-color: transparent;
+    border-color: var(--error-color);
+  }
+}
