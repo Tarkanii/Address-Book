@@ -1,0 +1,10 @@
+<div class="modal-backdrop" [ngClass]="{ open: isOpen }" (click)="closeModal($event)">
+  <div class="modal">
+    <button class="modal__close-button" (click)="closeModal()">
+      <svg class="modal__close-button__icon">
+        <use href="../../../assets/icons/sprite.svg#icon-close"></use>
+      </svg>
+    </button>
+    <ng-content></ng-content>
+  </div>
+</div>

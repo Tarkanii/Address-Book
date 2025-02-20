@@ -1,0 +1,9 @@
+<app-header></app-header>
+<main class="main">
+  <app-contact-list></app-contact-list>
+</main>
+<app-modal [isOpen]="!!(currentModal$ | async)">
+  @if ((currentModal$ | async) === 'add-form') {
+    <app-add-form></app-add-form>
+  }
+</app-modal>

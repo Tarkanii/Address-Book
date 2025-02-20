@@ -1,0 +1,71 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: var(--modal-backdrop-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+
+  &.open {
+    opacity: 1;
+    visibility: visible; 
+  }
+  
+  .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    padding: 40px  25px 25px;
+    border-radius: 5px;
+    transform: scale(0);
+    background-color: var(--primary-bg);
+    transition: transform var(--transition);
+  }
+
+  &.open .modal {
+    transform: scale(1);
+  }
+
+  &.open .modal__close-button {
+    display: flex;
+  }
+}
+
+.modal__close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  transition: background-color var(--transition), border-color var(--transition);
+
+  &:hover, &:focus {
+    background-color: var(--dark-bg);
+    border-color: transparent;
+  }
+
+  &__icon {
+    height: 15px;
+    width: 15px;
+    fill: var(--primary-text-color);
+    transition: fill var(--transition);
+  }
+  
+  &:hover &__icon, &:focus &__icon {
+    fill: var(--light-text-color);
+  }
+}

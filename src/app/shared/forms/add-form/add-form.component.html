@@ -1,0 +1,24 @@
+<form [formGroup]="addContactForm" (ngSubmit)="addContact()" class="form">
+
+  <h2 class="form__title">Add Contact Form</h2>
+
+  <label class="form__label">
+    First name
+    <input appCustomInput formControlName="firstName" class="form__input" placeholder="First name" type="text">
+    <p class="form__hint">Required field</p>
+  </label>
+
+  <label class="form__label">
+    Last name
+    <input appCustomInput formControlName="lastName" class="form__input" placeholder="Last name" type="text">
+    <p class="form__hint">Required field</p>
+  </label>
+
+  <label class="form__label">
+    Phone number (optional)
+    <input appCustomInput [phone]="true" formControlName="phoneNumber" class="form__input" placeholder="Phone number" type="text">
+    <p class="form__hint">{{ addContactForm.controls['phoneNumber'].errors?.['message'] }}</p>
+  </label>
+
+  <button class="form__submit-button" type="submit">Add contact</button>
+</form>
