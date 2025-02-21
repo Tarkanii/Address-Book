@@ -16,11 +16,13 @@ export class HeaderComponent {
 
   // Changes search value
   public onInputChange(e: Event): void {
+    this.contactsService.changePage(1);
     this.contactsService.search$.next((e.target as HTMLInputElement).value);
   }
 
   // Changes sorting value
   public onSortingChange(e: Event): void {
+    this.contactsService.changePage(1);
     this.contactsService.sorting$.next((e.target as HTMLSelectElement).value);
   }
 
