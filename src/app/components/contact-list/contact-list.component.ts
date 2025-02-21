@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AsyncPipe, NgClass } from '@angular/common';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IContact } from '../../shared/types/contact';
 import { ContactsService } from '../../shared/services/contacts.service';
 import { ModalService } from '../../shared/services/modal.service';
@@ -14,12 +14,12 @@ import { ContactComponent } from '../contact/contact.component';
 })
 export class ContactListComponent {
   // Gets contacts from contactsService
-  public contacts$: BehaviorSubject<IContact[]>;
+  public contacts$: Observable<IContact[]>;
   // Id of contact for deleting
   public deleteId: string | null = null;
 
   constructor(private contactsService: ContactsService, private modalService: ModalService) {
-    this.contacts$ = this.contactsService.contacts$;
+    this.contacts$ = this.contactsService.getContacts();
   }
 
   // Opens 'addContact' form modal, closes deleting confirmation window if needed
