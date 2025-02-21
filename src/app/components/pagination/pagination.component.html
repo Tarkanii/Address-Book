@@ -1,0 +1,31 @@
+<div class="pagination">
+  @if (pages.length > 1) {
+    <ul class="pagination__list">
+      <li class="pagination__list__item">
+        <button class="pagination__list__item__button button--prev" (click)="changePage(currentPage - 1)">
+          <svg class="pagination__list__item__button__icon">
+            <use href="../../../assets/icons/sprite.svg#icon-arrow"></use>
+          </svg>
+        </button>
+      </li>
+      @for (page of pages; track page) {
+        <li class="pagination__list__item">
+          <button 
+            class="pagination__list__item__button"
+            [ngClass]="{ selected: currentPage === page }"
+            (click)="changePage(page)"
+          >
+            {{ page }}
+          </button>
+        </li>
+      }
+      <li class="pagination__list__item">
+        <button class="pagination__list__item__button button--next" (click)="changePage(currentPage + 1)">
+          <svg class="pagination__list__item__button__icon">
+            <use href="../../../assets/icons/sprite.svg#icon-arrow"></use>
+          </svg>
+        </button>
+      </li>
+    </ul>
+  }
+</div>

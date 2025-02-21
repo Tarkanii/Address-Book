@@ -15,8 +15,8 @@ export class ContactsService {
     { id: '3', first_name: 'Aaron', last_name: 'Reiser', phone_number: '+44770000000' },
     { id: '4', first_name: 'Reece', last_name: 'Bloated', phone_number: '+44770000000' },
     { id: '5', first_name: 'Jake', last_name: 'Ancel', phone_number: '+44770000000' },
-    { id: '6', first_name: 'Ashton', last_name: 'Reiser', phone_number: '+44770000000' },
-    { id: '7', first_name: 'Terry', last_name: 'Bloated', phone_number: '+44770000000' },
+    // { id: '6', first_name: 'Ashton', last_name: 'Reiser', phone_number: '+44770000000' },
+    // { id: '7', first_name: 'Terry', last_name: 'Bloated', phone_number: '+44770000000' },
   ]
 
   // Saved contacts
@@ -25,10 +25,15 @@ export class ContactsService {
   public search$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   // Sorting Value
   public sorting$: BehaviorSubject<string> = new BehaviorSubject<string>(SortingEnum.default);
+  // Current page
+  public currentPage$: BehaviorSubject<number> = new BehaviorSubject<number>(1);
+  // Amount of contacts per page
+  public limitPerPage: number = 5;
   
+  // Gets ready to display contacts with search and sorting applied
   public getContacts(): Observable<IContact[]> {
-    return combineLatest([this.contacts$, this.search$, this.sorting$]).pipe(
-      map(([contacts, search, sorting]) => {
+    return combineLatest([this.contacts$, this.search$, this.sorting$, this.currentPage$]).pipe(
+      map(([contacts, search, sorting, page]) => {
         // Filtering contacts by search value if there is one
         if (search.length > 0) {
           search = search.toLowerCase();
@@ -42,12 +47,12 @@ export class ContactsService {
 
         // Sorting contacts depending on the sorting value
         if (sorting === SortingEnum.firstName) {
-          return [...contacts].sort(this.sortBy('first_name'));
+          return [...contacts].sort(this.sortBy('first_name')).slice((page - 1) * this.limitPerPage, (page - 1) * this.limitPerPage + this.limitPerPage);
         } else if (sorting === SortingEnum.lastName) {
-          return [...contacts].sort(this.sortBy('last_name'));
+          return [...contacts].sort(this.sortBy('last_name')).slice((page - 1) * this.limitPerPage, (page - 1) * this.limitPerPage + this.limitPerPage);
         }
 
-        return contacts;
+        return contacts.slice((page - 1) * this.limitPerPage, (page - 1) * this.limitPerPage + this.limitPerPage);;
       })
     );
   }
@@ -84,5 +89,10 @@ export class ContactsService {
   // Deletes contact
   public deleteContact(id: string): void {
     this.contacts$.next(this.contacts$.value.filter((contact: IContact) => contact.id !== id));
+  }
+
+  // Changes current page
+  public changePage(page: number): void {
+    this.currentPage$.next(page);
   }
 }

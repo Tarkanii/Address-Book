@@ -1,8 +1,7 @@
 <div class="container">
-  
-  @if ((contacts$ | async)?.length) {
+  @if ((displayContacts$ | async)?.length) {
     <ul class="contact-list">
-      @for (contact of (contacts$ | async); track contact.id) {
+      @for (contact of (displayContacts$ | async); track contact.id) {
         <li class="contact-list__item">
           <app-contact
             [contactId]="contact.id"
@@ -13,12 +12,17 @@
           ></app-contact>
         </li>
       }
-      
     </ul>
   } @else {
     <h2 class="no-contacts-message">No contacts found</h2>
   }
-  
+  <app-pagination
+    class="pagination"
+    [itemsAmount]="getContactsAmount() | async" 
+    [itemsPerPage]="limitPerPage"
+    [currentPage]="(currentPage$ | async) ?? 0"
+    (pageChanged)="changePage($event)"
+  ></app-pagination>
   <button class="add-contact-button" (click)="openAddForm()">Add contact</button>
 </div>
 
