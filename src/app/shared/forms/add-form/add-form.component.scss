@@ -57,15 +57,14 @@
 }
 
 .form__submit-button {
+  color: var(--light-text-color);
   padding: 10px 15px;
   border-radius: 5px;
   font-weight: 700;
-  border: 1px solid var(--border-color);
-  background: none;
-  transition: color var(--transition), background-color var(--transition), border-color var(--transition);
+  background-color: var(--dark-bg);
+  transition: background-color var(--transition), border-color var(--transition);
 
   &:focus, &:hover {
-    color: var(--light-text-color);
     background-color: var(--success-color);
     border-color: transparent;
   }

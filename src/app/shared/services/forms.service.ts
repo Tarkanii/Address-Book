@@ -18,7 +18,7 @@ export class FormsService {
 
       if (match[0] === control.value) return null;
 
-      return null;
+      return { error: true, message: 'Valid phone number: +447x12345678 or 07x12345678' };
     }
   }
 }

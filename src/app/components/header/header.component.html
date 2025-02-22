@@ -11,13 +11,13 @@
       <svg class="search__label__icon">
         <use href="../../../assets/icons/sprite.svg#icon-search"></use>
       </svg>
-      <input class="search__input" type="text" (keyup)="onInputChange($event)">
+      <input data-testid="searchInput" class="search__input" type="text" (keyup)="onInputChange($event)">
     </label>
     <label class="search__sort-label">
       <p class="search__sort-text">Sort By:</p>
-      <select class="search__sort-select" name="sorting" (change)="onSortingChange($event)">
+      <select data-testid="searchSelect" class="search__sort-select" name="sorting" (change)="onSortingChange($event)">
         @for (option of sortingOptions; track option) {
-          <option [value]="option">{{ option }}</option>
+          <option data-testid="searchSelectOption" [value]="option">{{ option }}</option>
         }
       </select>
     </label>

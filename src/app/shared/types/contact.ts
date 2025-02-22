@@ -1,4 +1,4 @@
-// Can add additional fields in the future e.g. 'image'
+// Can add additional fields in the future e.g. 'imageLink'
 export interface IContact {
   id: string,
   first_name: string,

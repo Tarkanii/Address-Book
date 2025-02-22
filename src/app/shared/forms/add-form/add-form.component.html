@@ -2,22 +2,22 @@
 
   <h2 class="form__title">Add Contact Form</h2>
 
-  <label class="form__label">
+  <label class="form__label" data-testid="formLabel">
     First name
-    <input appCustomInput formControlName="firstName" class="form__input" placeholder="First name" type="text">
-    <p class="form__hint">Required field</p>
+    <input appCustomInput data-testid="formInput" formControlName="firstName" class="form__input" placeholder="First name" type="text">
+    <p class="form__hint" data-testid="formHint">Required field</p>
   </label>
 
-  <label class="form__label">
+  <label class="form__label" data-testid="formLabel">
     Last name
-    <input appCustomInput formControlName="lastName" class="form__input" placeholder="Last name" type="text">
-    <p class="form__hint">Required field</p>
+    <input appCustomInput data-testid="formInput" formControlName="lastName" class="form__input" placeholder="Last name" type="text">
+    <p class="form__hint" data-testid="formHint">Required field</p>
   </label>
 
-  <label class="form__label">
+  <label class="form__label" data-testid="formLabel">
     Phone number (optional)
-    <input appCustomInput [phone]="true" formControlName="phoneNumber" class="form__input" placeholder="Phone number" type="text">
-    <p class="form__hint">{{ addContactForm.controls['phoneNumber'].errors?.['message'] }}</p>
+    <input appCustomInput data-testid="formInput" [phone]="true" formControlName="phoneNumber" class="form__input" placeholder="Phone number" type="text">
+    <p class="form__hint" data-testid="formHint">{{ addContactForm.controls['phoneNumber'].errors?.['message'] }}</p>
   </label>
 
   <button class="form__submit-button" type="submit">Add contact</button>
