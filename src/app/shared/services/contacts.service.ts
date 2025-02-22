@@ -2,28 +2,19 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, combineLatest, map, Observable } from "rxjs";
 import { IContact, IContactFormValue } from "../types/contact";
 import { SortingEnum } from "../types/sorting.enum";
+import { defaultContacts } from "../defaultValues/contacts";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService {
   // Contacts for testing
-  private defaultContacts: IContact[] = [
-    { id: '0', first_name: 'Bob', last_name: 'Marley', phone_number: '+44770000000' },
-    { id: '1', first_name: 'Rob', last_name: 'Passey', phone_number: '+44770000000' },
-    { id: '2', first_name: 'Jay', last_name: 'Ancel', phone_number: '+44770000000' },
-    { id: '3', first_name: 'Aaron', last_name: 'Reiser', phone_number: '+44770000000' },
-    { id: '4', first_name: 'Reece', last_name: 'Bloated', phone_number: '+44770000000' },
-    { id: '5', first_name: 'Jake', last_name: 'Ancel', phone_number: '+44770000000' },
-    { id: '6', first_name: 'Ashton', last_name: 'Reiser', phone_number: '+44770000000' },
-    { id: '7', first_name: 'Terry', last_name: 'Bloated', phone_number: '+44770000000' },
-  ]
 
   constructor() {
     const localStorageContacts = localStorage.getItem('ab-ng-contacts');
     if (localStorageContacts === null) {
       // Saving default contacts into localstorage there no previosly stored contacts
-      localStorage.setItem('ab-ng-contacts', JSON.stringify(this.defaultContacts));
+      localStorage.setItem('ab-ng-contacts', JSON.stringify(defaultContacts));
     } else {
       // Filling contacts$ with previosly saved contacts 
       const savedContacts = JSON.parse(localStorageContacts);
@@ -32,7 +23,7 @@ export class ContactsService {
   }
 
   // Saved contacts
-  public contacts$: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>(this.defaultContacts);
+  public contacts$: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>(defaultContacts);
   // Search value
   public search$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   // Sorting value

@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ContactsService } from '../../shared/services/contacts.service';
-import { fromEvent, map } from 'rxjs';
 import { SortingEnum } from '../../shared/types/sorting.enum';
 
 @Component({
@@ -15,9 +14,12 @@ export class HeaderComponent {
   constructor(private contactsService: ContactsService) {}
 
   // Changes search value
-  public onInputChange(e: Event): void {
+  public onInputChange(e: KeyboardEvent): void {
+    const value = (e.target as HTMLInputElement).value;
+    if (this.contactsService.search$.value === value) return;
+    
     this.contactsService.changePage(1);
-    this.contactsService.search$.next((e.target as HTMLInputElement).value);
+    this.contactsService.search$.next(value);
   }
 
   // Changes sorting value

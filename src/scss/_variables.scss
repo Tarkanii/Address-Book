@@ -1,13 +1,13 @@
 :root {
   --font: Verdana, Geneva, Tahoma, sans-serif;
-  --primary-text-color: rgba(0, 0, 0, 1);
-  --light-text-color: rgba(255, 255, 255, 1);
-  --success-color: rgba(27, 189, 60, 1);
-  --error-color: rgba(255, 0, 27, 1);
-  --secondary-text-color: rgba(140, 140, 140, 1);
+  --primary-text-color: rgb(0, 0, 0);
+  --light-text-color: rgb(255, 255, 255);
+  --success-color: rgb(27, 189, 60);
+  --error-color: rgb(255, 0, 27);
+  --secondary-text-color: rgb(140, 140, 140);
   --border-color: rgba(140, 140, 140, 0.6);
-  --primary-bg: rgba(255, 255, 255, 1);
-  --dark-bg: rgba(0, 0, 0, 1);
+  --primary-bg: rgb(255, 255, 255);
+  --dark-bg: rgb(0, 0, 0);
   --modal-backdrop-bg: rgba(0, 0, 0, 0.8);
 
   --transition: ease-in 200ms;

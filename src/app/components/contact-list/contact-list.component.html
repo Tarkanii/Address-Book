@@ -4,6 +4,7 @@
       @for (contact of (displayContacts$ | async); track contact.id) {
         <li class="contact-list__item">
           <app-contact
+            data-testid="contact"
             [contactId]="contact.id"
             [firstName]="contact.first_name" 
             [lastName]="contact.last_name" 
@@ -14,28 +15,47 @@
       }
     </ul>
   } @else {
-    <h2 class="no-contacts-message">No contacts found</h2>
+    <h2 data-testid="errorMessage" class="no-contacts-message">No contacts found</h2>
   }
+
   <app-pagination
+    data-testid="pagination"
     class="pagination"
     [itemsAmount]="getContactsAmount() | async" 
     [itemsPerPage]="limitPerPage"
     [currentPage]="(currentPage$ | async) ?? 0"
     (pageChanged)="changePage($event)"
   ></app-pagination>
-  <button class="add-contact-button" (click)="openAddForm()">Add contact</button>
+
+  <button
+    data-testid="addContactButton"
+    class="add-contact-button" 
+    (click)="openAddForm()">Add contact</button>
 </div>
 
-<div class="modal-backdrop" [ngClass]="{ open: deleteId }" (click)="closeDeleteConfirmation($event)">
-  <div class="modal">
+<div 
+  class="modal-backdrop" 
+  [ngClass]="{ open: deleteId }" 
+  (click)="closeDeleteConfirmation($event)"
+  data-testid="modalBackdrop"
+>
+  <div class="modal" data-testid="modal">
     <h3 class="modal__heading">Delete Confirmation</h3>
     <p class="modal__message">Do you want to delete this contact?</p>
     <ul class="modal__actions">
       <li class="modal__actions__item">
-        <button class="modal__actions__item__button" (click)="closeDeleteConfirmation()">Cancel</button>
+        <button 
+          class="modal__actions__item__button" 
+          (click)="closeDeleteConfirmation()"
+          data-testid="modalCancelButton"
+          >Cancel</button>
       </li>
       <li class="modal__actions__item">
-        <button class="modal__actions__item__button delete" (click)="deleteContact()">Delete</button>
+        <button 
+          class="modal__actions__item__button delete" 
+          (click)="deleteContact()"
+          data-testid="modalDeleteButton"
+          >Delete</button>
       </li>
     </ul>
   </div>

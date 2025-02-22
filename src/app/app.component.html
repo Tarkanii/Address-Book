@@ -1,11 +1,11 @@
 <header>
-  <app-header></app-header>
+  <app-header data-testid="header"></app-header>
 </header>
 <main class="main">
-  <app-contact-list></app-contact-list>
+  <app-contact-list data-testid="contactList"></app-contact-list>
 </main>
-<app-modal [isOpen]="!!(currentModal$ | async)">
+<app-modal data-testid="modal" [isOpen]="!!(currentModal$ | async)">
   @if ((currentModal$ | async) === 'add-form') {
-    <app-add-form></app-add-form>
+    <app-add-form data-testid="addForm"></app-add-form>
   }
 </app-modal>

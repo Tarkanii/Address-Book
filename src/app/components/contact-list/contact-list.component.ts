@@ -36,13 +36,13 @@ export class ContactListComponent {
     this.limitPerPage = this.contactsService.limitPerPage;
   }
 
-  // Opens 'addContact' form modal, closes deleting confirmation window if needed
+  // Opens 'addContact' form modal, closes deleting confirmation window
   public openAddForm(): void {
     this.closeDeleteConfirmation();
     this.modalService.openModal('add-form');
   }
 
-  // Opens delete confirmation window, closes adding contact form window if needed
+  // Opens delete confirmation window, closes adding contact form window
   public openDeleteConfirmation(id: string): void {
     this.modalService.closeModal();
     this.deleteId = id;
@@ -50,14 +50,8 @@ export class ContactListComponent {
 
   // Closes deleting confirmation window when user clicks on backdrop or cancel button
   public closeDeleteConfirmation(e?: Event): void {
-    if (!e) {
-      this.deleteId = null;
-      return;
-    }
-
-    if ((e.target as HTMLDivElement).classList.value.includes('backdrop')) {
-      this.deleteId = null;
-    }
+    if (e && !(e.target as HTMLDivElement).classList.value.includes('backdrop')) return;
+    this.deleteId = null;
   }
 
   // Deletes contact if Id is provided

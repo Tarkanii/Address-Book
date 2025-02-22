@@ -18,8 +18,12 @@ export class PaginationComponent implements OnInit, OnChanges {
   public pages: number[] = [];
 
   public ngOnInit(): void {
-    if (!this.itemsAmount) return;
-    this.setPages(this.itemsAmount, this.itemsPerPage);
+    if (!this.itemsAmount)  {
+      // Setting pages to an empty array as there are no items
+      this.setPages(0, 1);
+    } else {
+      this.setPages(this.itemsAmount, this.itemsPerPage);
+    }
   }
 
   public ngOnChanges({ itemsAmount }: SimpleChanges): void {

@@ -1,6 +1,11 @@
-<div class="modal-backdrop" [ngClass]="{ open: isOpen }" (click)="closeModal($event)">
-  <div class="modal">
-    <button class="modal__close-button" (click)="closeModal()">
+<div
+  data-testid="modalBackdrop"
+  class="modal-backdrop" 
+  [ngClass]="{ open: isOpen }" 
+  (click)="closeModal($event)"
+>
+  <div class="modal" data-testid="modal">
+    <button data-testid="modalCloseButton" class="modal__close-button" (click)="closeModal()">
       <svg class="modal__close-button__icon">
         <use href="../../../assets/icons/sprite.svg#icon-close"></use>
       </svg>

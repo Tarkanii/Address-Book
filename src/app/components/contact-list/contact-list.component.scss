@@ -35,21 +35,21 @@
 }
 
 .add-contact-button {
+  color: var(--light-text-color);
   position: fixed;
   bottom: 25px;
   right: 15px;
   font-size: 18px;
   font-weight: 700;
   padding: 10px 15px;
-  background-color: var(--primary-bg);
-  border: 1px solid var(--border-color);
+  background-color: var(--dark-bg);
+  border: 1px solid var(--light-text-color);
   border-radius: 5px;
-  transition: border-color var(--transition), background-color var(--transition), color var(--transition);
+  transition: border-color var(--transition), background-color var(--transition);
 
   &:hover, &:focus {
-    color: var(--light-text-color);
     border-color: transparent;
-    background-color: var(--dark-bg);
+    background-color: var(--success-color);
   }
 
   @include desktop {
@@ -122,7 +122,7 @@
 
   &.delete {
     color: var(--light-text-color);
-    background-color: var(--error-color);
+    background-color: var(--dark-bg);
   }
 
   &:hover, &:focus {
@@ -131,8 +131,7 @@
   }
 
   &.delete:hover, &.delete:focus {
-    color: var(--error-color);
-    background-color: transparent;
-    border-color: var(--error-color);
+    color: var(--light-text-color);
+    background-color: var(--error-color);
   }
 }
