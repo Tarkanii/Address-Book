@@ -34,6 +34,7 @@ export class AddFormComponent {
     if (!this.addContactForm.valid) return;
     this.contactsService.addContact(this.addContactForm.value);
     this.modalService.closeModal();
+    this.contactsService.changePage(1);
   }
 
 }

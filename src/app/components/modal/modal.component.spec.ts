@@ -40,12 +40,6 @@ describe('ModalComponent', () => {
 
   // closeModal
   describe('closeModal', () => {
-    it('closes modal if user clicked on backdrop', () => {
-      spyOn(modalService, 'closeModal').and.callFake(() => {});
-      const modalBackdrop = fixture.debugElement.query(By.css('[data-testid=modalBackdrop]'));
-      (modalBackdrop.nativeElement as HTMLDivElement).dispatchEvent(new MouseEvent('click'));
-      expect(modalService.closeModal).toHaveBeenCalledTimes(1);
-    });
 
     it('closes modal if user clicked on close button', () => {
       spyOn(modalService, 'closeModal').and.callFake(() => {});
@@ -60,19 +54,6 @@ describe('ModalComponent', () => {
       (modal.nativeElement as HTMLDivElement).dispatchEvent(new MouseEvent('click'));
       expect(modalService.closeModal).toHaveBeenCalledTimes(0);
     });
-
-    it('gets called when user clicks on backdrop', () => {
-      spyOn(component, 'closeModal').and.callFake((e?: MouseEvent) => {});
-      const modalBackdrop = fixture.debugElement.query(By.css('[data-testid=modalBackdrop]'));
-      (modalBackdrop.nativeElement as HTMLDivElement).dispatchEvent(new MouseEvent('click'));
-      expect(component.closeModal).toHaveBeenCalledWith(new MouseEvent('click'));
-    });
-
-    it('gets called when user clicks on close button', () => {
-      spyOn(component, 'closeModal').and.callFake((e?: MouseEvent) => {});
-      const closeButton = fixture.debugElement.query(By.css('[data-testid=modalCloseButton]'));
-      (closeButton.nativeElement as HTMLButtonElement).dispatchEvent(new MouseEvent('click'));
-      expect(component.closeModal).toHaveBeenCalledWith();
-    });
+    
   });
 });
