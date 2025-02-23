@@ -1,8 +1,7 @@
 <div
   data-testid="modalBackdrop"
   class="modal-backdrop" 
-  [ngClass]="{ open: isOpen }" 
-  (click)="closeModal($event)"
+  [ngClass]="{ open: isOpen }"
 >
   <div class="modal" data-testid="modal">
     <button data-testid="modalCloseButton" class="modal__close-button" (click)="closeModal()">

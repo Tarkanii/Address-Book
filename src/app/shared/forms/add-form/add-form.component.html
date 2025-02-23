@@ -1,4 +1,4 @@
-<form [formGroup]="addContactForm" (ngSubmit)="addContact()" class="form">
+<form [formGroup]="addContactForm" class="form">
 
   <h2 class="form__title">Add Contact Form</h2>
 
@@ -20,5 +20,5 @@
     <p class="form__hint" data-testid="formHint">{{ addContactForm.controls['phoneNumber'].errors?.['message'] }}</p>
   </label>
 
-  <button class="form__submit-button" type="submit">Add contact</button>
+  <button class="form__submit-button" type="button" (click)="addContact()">Add contact</button>
 </form>

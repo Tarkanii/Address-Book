@@ -14,9 +14,8 @@ export class ModalComponent {
 
   constructor(private modalService: ModalService) {}
 
-  // Closes modal if user clicked on backdrop or close button
-  public closeModal(e?: MouseEvent): void {
-    if (e && !(e.target as HTMLDivElement).classList.value.includes('backdrop')) return;
+  // Closes modal if user clicked on close button
+  public closeModal(): void {
     this.modalService.closeModal();
   }
 
