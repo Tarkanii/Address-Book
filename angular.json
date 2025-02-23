@@ -11,15 +11,15 @@
         }
       },
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "src/ui",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/address-book",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
+            "outputPath": "dist-ng/address-book",
+            "index": "src/ui/index.html",
+            "browser": "src/ui/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -30,10 +30,10 @@
                 "glob": "**/*",
                 "input": "public"
               },
-              "src/assets/icons"
+              "src/ui/assets/icons"
             ],
             "styles": [
-              "src/scss/styles.scss"
+              "src/ui/scss/styles.scss"
             ],
             "scripts": []
           },
@@ -90,10 +90,10 @@
                 "glob": "**/*",
                 "input": "public"
               },
-              "src/assets/icons"
+              "src/ui/assets/icons"
             ],
             "styles": [
-              "src/scss/styles.scss"
+              "src/ui/scss/styles.scss"
             ],
             "scripts": []
           }
