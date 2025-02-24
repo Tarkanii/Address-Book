@@ -37,7 +37,10 @@ export class PaginationComponent implements OnInit, OnChanges {
 
     // If user deletes last contact on the page, we transfer him to the last available page
     if (this.currentPage > this.pages.length) {
-      setTimeout(() => this.changePage(this.pages.length));
+      setTimeout(() => {
+        // Prevents from wrong page change during async loading of saved contacts
+        if (this.currentPage > this.pages.length) this.changePage(this.pages.length);
+      });
     }
   }
 

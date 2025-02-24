@@ -1,6 +1,8 @@
 {
   "appId": "com.artur-tarkanii.address-book-electron",
-  "files": ["dist-electron", "dist-ng", "./build-assets/**/*"],
+  "files": ["dist-electron", "dist-ng"],
+  "extraResources": ["dist-electron/preload.cjs", "public/icon.ico", "src/assets/icon.ico"],
+  "icon": "src/assets/icon.ico",
   "mac": {
     "target": "dmg"
   },
@@ -10,9 +12,6 @@
   },
   "win": {
     "target": ["portable", "msi"],
-    "icon": "./build-assets/desktop-icon.png"
-  },
-  "directories": {
-    "buildResources": "build-assets"
+    "icon": "src/assets/icon.ico"
   }
 }
