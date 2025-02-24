@@ -5,6 +5,7 @@
   "compilerOptions": {
     "outDir": "./dist-ng/out-tsc",
     "strict": true,
+    "types": ["./types.d.ts"],
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, combineLatest, map, Observable } from "rxjs";
+import { BehaviorSubject, combineLatest, from, map, Observable, take } from "rxjs";
 import { IContact, IContactFormValue } from "../types/contact";
 import { SortingEnum } from "../types/sorting.enum";
 import { defaultContacts } from "../defaultValues/contacts";
@@ -11,19 +11,11 @@ export class ContactsService {
   // Contacts for testing
 
   constructor() {
-    const localStorageContacts = localStorage.getItem('ab-ng-contacts');
-    if (localStorageContacts === null) {
-      // Saving default contacts into localstorage there no previosly stored contacts
-      localStorage.setItem('ab-ng-contacts', JSON.stringify(defaultContacts));
-    } else {
-      // Filling contacts$ with previosly saved contacts 
-      const savedContacts = JSON.parse(localStorageContacts);
-      this.contacts$.next(savedContacts);
-    }
+    this.getSavedContacts();
   }
 
   // Saved contacts
-  public contacts$: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>(defaultContacts);
+  public contacts$: BehaviorSubject<IContact[]> = new BehaviorSubject<IContact[]>([]);
   // Search value
   public search$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   // Sorting value
@@ -74,9 +66,40 @@ export class ContactsService {
     }
   }
 
-  // Saves contacts into LocalStorage
+  // Saves contacts into LocalStorage or local file
   private saveContacts(): void {
-    localStorage.setItem('ab-ng-contacts', JSON.stringify(this.contacts$.value));
+    if (window.electronApi) {
+      window.electronApi.saveContacts(this.contacts$.value);
+    } else {
+      localStorage.setItem('ab-ng-contacts', JSON.stringify(this.contacts$.value));
+    }
+  }
+
+  // Gets saved contacts from LocalStorage or local file
+  private getSavedContacts(): void {
+    if (!window.electronApi) {
+      const localStorageContacts = localStorage.getItem('ab-ng-contacts');
+      if (localStorageContacts === null) {
+        // Saving default contacts into localstorage there no previosly stored contacts
+        this.contacts$.next(defaultContacts);
+        this.saveContacts();
+      } else {
+        // Filling contacts$ with previosly saved contacts
+        this.contacts$.next(JSON.parse(localStorageContacts));
+      }
+      return;
+    }
+
+    const savedContacts$ = from(window.electronApi.getContacts());
+    savedContacts$.pipe(take(1)).subscribe((contacts: ContactsResponseType) => {
+      if (contacts === null) {
+        this.contacts$.next(defaultContacts);
+        this.saveContacts();
+        return;
+      }
+      
+      this.contacts$.next(contacts);
+    });
   }
 
   // Adds contact from 'addContactForm' values
